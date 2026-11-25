@@ -202,6 +202,46 @@ python src/dashboard.py
 
 These are the two canonical CORE runtime commands.
 
+### Running the terminal application
+
+Run the command from the repository root, so that the relative path
+`data/sample/` is found:
+
+```bash
+python src/main.py
+```
+
+At the current stage the application reads `data/sample/instruments.json` and
+`data/sample/prices.csv` and uses only the Python standard library.
+
+Expected terminal output on the sample data:
+
+```text
+=== MarketPulse ===
+Market configuration
+Period  : 1 month
+Interval: Daily
+
+Instrument
+AAPL - Apple Inc.
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 250.00 USD
+Last close   : 266.20 USD
+
+Benchmark
+SP500 - S&P 500
+Observations : 21
+First date   : 2026-09-01
+Last date    : 2026-09-30
+First close  : 6600.00
+Last close   : 6742.00
+```
+
+If the command fails with a file-not-found error, check that your terminal is
+in the repository root (`pwd`).
+
 The instructor starter repository does not necessarily contain every later-stage student file on day one. Files appear progressively during the lab sequence.
 
 ## Installation
