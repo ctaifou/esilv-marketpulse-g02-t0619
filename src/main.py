@@ -7,6 +7,7 @@ DATA_DIR = Path("data/sample")
 
 LOOKBACK_LABEL = "1 month"
 INTERVAL_LABEL = "Daily"
+PROVIDER_LABEL = "CSV"
 
 
 def load_instruments():
@@ -60,6 +61,7 @@ def main():
     print("Market configuration")
     print(f"Period  : {LOOKBACK_LABEL}")
     print(f"Interval: {INTERVAL_LABEL}")
+    print(f"Provider: {PROVIDER_LABEL}")
     print()
 
     print("Instrument")
