@@ -36,15 +36,16 @@ def get_first_date(prices):
 
 def get_last_date(prices):
     return prices[-1]["date"]
-
 def display_market_summary(asset, prices, show_currency=True):
     currency_suffix = f" {asset['currency']}" if show_currency else ""
     print(f"{asset['ticker']} - {asset['name']}")
+    print(f"Market       : {asset['market']}")
     print(f"Observations : {len(prices)}")
     print(f"First date   : {get_first_date(prices)}")
     print(f"Last date    : {get_last_date(prices)}")
     print(f"First close  : {get_first_close(prices):.2f}{currency_suffix}")
     print(f"Last close   : {get_last_close(prices):.2f}{currency_suffix}")
+
 
 
 def main():
