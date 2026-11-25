@@ -2,7 +2,12 @@ from pathlib import Path
 import csv
 import json
 
-
+from src.analytics import (
+    align_series,
+    calculate_period_return,
+    calculate_base_100,
+    calculate_relative_performance,
+)
 DATA_DIR = Path("data/sample")
 
 LOOKBACK_LABEL = "1 month"
@@ -73,5 +78,21 @@ def main():
     display_market_summary(benchmark, benchmark_prices, show_currency=False)
 
 
+    aligned_instrument, aligned_benchmark = align_series(instrument_prices, benchmark_prices)
+    inst_return = calculate_period_return(aligned_instrument)
+    bench_return = calculate_period_return(aligned_benchmark)
+    rel_perf = calculate_relative_performance(inst_return, bench_return)
+    inst_base_100 = calculate_base_100(aligned_instrument)
+    bench_base_100 = calculate_base_100(aligned_benchmark)
+
+    print("\nComparison (aligned)")
+    print(f"Aligned sessions        : {len(aligned_instrument)}")
+    print(f"{instrument['ticker']} period return      : {inst_return:+.2f}%")
+    print(f"{benchmark['ticker']} period return     : {bench_return:+.2f}%")
+    print(f"Relative performance    : {rel_perf:+.2f} percentage points")
+
+    print("\nBase 100")
+    print(f"{instrument['ticker']:<6} : {inst_base_100[0]['value']:.2f} -> {inst_base_100[-1]['value']:.2f}")
+    print(f"{benchmark['ticker']:<6} : {bench_base_100[0]['value']:.2f} -> {bench_base_100[-1]['value']:.2f}")
 if __name__ == "__main__":
     main()
