@@ -29,3 +29,16 @@ def fetch_yahoo_prices(symbol, canonical_ticker, period="1mo", interval="1d"):
             "volume": int(row["Volume"]),
         })
     return rows
+
+
+
+def fetch_prices_for_ticker(ticker, period="1mo", interval="1d"):
+    if ticker not in YAHOO_SYMBOL_MAPPING:
+        known = ", ".join(sorted(YAHOO_SYMBOL_MAPPING))
+        raise ValueError(f"Unknown ticker '{ticker}'. Known tickers: {known}.")
+    return fetch_yahoo_prices(
+        YAHOO_SYMBOL_MAPPING[ticker],
+        ticker,
+        period=period,
+        interval=interval,
+    )
