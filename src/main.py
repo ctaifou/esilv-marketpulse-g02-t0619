@@ -2,12 +2,20 @@ from pathlib import Path
 import csv
 import json
 
-from src.analytics import (
-    align_series,
-    calculate_period_return,
-    calculate_base_100,
-    calculate_relative_performance,
-)
+try:
+    from src.analytics import (
+        align_series,
+        calculate_period_return,
+        calculate_base_100,
+        calculate_relative_performance,
+    )
+except ModuleNotFoundError:
+    from analytics import (
+        align_series,
+        calculate_period_return,
+        calculate_base_100,
+        calculate_relative_performance,
+    )
 DATA_DIR = Path("data/sample")
 
 LOOKBACK_LABEL = "1 month"
